@@ -176,10 +176,14 @@ print(min(list_num))
 
 print(set(list_num))
 
-for var in range(3, len(list_num) - 1, 4):
-    list_num[var] = 'X'
 
-print(list_num)
+def absd(arr):
+    for var in range(3, len(arr) - 1, 4):
+        arr[var] = 'X'
+    return arr
+
+
+print(absd(list_num))
 
 print('--------------------------------------------------------')
 
@@ -209,19 +213,6 @@ while a < 10:
     a += 1
 
 print('--------------------------------------------------------')
-# 4) переделать первое задание под меню с помощью цикла
-
-print('1 - найти min число в листе')
-print('2 - удалить все дубликаты в листе')
-print('3 - заменить каждое четвертое значение на "Х"')
-print('4 - вывести элемент листа, значение которого ближе всего к среднему арифметическому всех элементов этого же листа')
-print('6 - выход')
-list_tasks = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]
-print(list_tasks)
-task = input(' Сделайте свой выбор: ')
-
-
-
 # ***  - вывести элемент листа, значение которого ближе всего к среднему арифметическому всех элементов этого же листа
 # пример:
 # [1, 2, 3, 4, 5, 6, 7, 8, 9] => 5
@@ -230,9 +221,43 @@ task = input(' Сделайте свой выбор: ')
 # [-10, 5, 5] => 5
 array_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-copy = array_list[:]
-avg = sum(array_list) / len(array_list)
-for i, k in enumerate(array_list):
-    print(i, k)
-    copy[i] = abs(k - avg)
-f = min(copy)
+
+def find(arr):
+    avg = sum(arr) / int(len(arr))
+    copy = arr[:]
+    for z, k in enumerate(arr):
+        copy[z] = abs(k - avg)
+    f = min(copy)
+    print(arr[copy.index(f)])
+
+
+find(array_list)
+print('--------------------------------------------------------')
+# 4) переделать первое задание под меню с помощью цикла
+
+print('1 - найти min число в листе')
+print('2 - удалить все дубликаты в листе')
+print('3 - заменить каждое четвертое значение на "Х"')
+print(
+    '4 - вывести элемент листа, значение которого ближе всего к среднему арифметическому всех элементов этого же листа')
+print('6 - выход')
+list_tasks = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]
+print(list_tasks)
+task = int(input(' Сделайте свой выбор: '))
+
+while i != 6:
+    if task == 1:
+        print(min(list_tasks))
+        task = int(input(' Сделайте свой выбор: '))
+    elif task == 2:
+        print(set(list_tasks))
+        task = int(input(' Сделайте свой выбор: '))
+    elif task == 3:
+        print(absd(list_tasks))
+        task = int(input(' Сделайте свой выбор: '))
+    elif task == 4:
+        find(list_tasks)
+        task = int(input(' Сделайте свой выбор: '))
+    elif task == 6 or task > 6:
+        break
+
